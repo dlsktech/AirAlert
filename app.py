@@ -31,7 +31,8 @@ def check_air_quality():
 
     data = response.json()
     total_pm25 = total_pm10 = total_pm1 = 0
-    
+    sensor_count = len(data)
+
     # Sumowanie danych z wszystkich czujników
     for sensor in data:
         for var in sensor["vars"]:
@@ -42,39 +43,44 @@ def check_air_quality():
             elif var["var_name"] == "PM1":
                 total_pm1 += var["var_value"]
 
-    new_alert_level = determine_alert_level(total_pm25, total_pm10, total_pm1)
+    # Obliczanie średniej z czujników
+    avg_pm25 = total_pm25 / sensor_count if sensor_count > 0 else 0
+    avg_pm10 = total_pm10 / sensor_count if sensor_count > 0 else 0
+    avg_pm1 = total_pm1 / sensor_count if sensor_count > 0 else 0
+
+    new_alert_level = determine_alert_level(avg_pm25, avg_pm10, avg_pm1)
 
     if new_alert_level != current_alert_level:
-        send_notification(new_alert_level, total_pm25, total_pm10, total_pm1)
+        send_notification(new_alert_level, avg_pm25, avg_pm10, avg_pm1)
         current_alert_level = new_alert_level
 
-def determine_alert_level(total_pm25, total_pm10, total_pm1):
+def determine_alert_level(avg_pm25, avg_pm10, avg_pm1):
     levels = [0, 0, 0]
 
-    if total_pm25 >= THRESHOLDS["PM2.5"][2]:
+    if avg_pm25 >= THRESHOLDS["PM2.5"][2]:
         levels[0] = 3
-    elif total_pm25 >= THRESHOLDS["PM2.5"][1]:
+    elif avg_pm25 >= THRESHOLDS["PM2.5"][1]:
         levels[0] = 2
-    elif total_pm25 >= THRESHOLDS["PM2.5"][0]:
+    elif avg_pm25 >= THRESHOLDS["PM2.5"][0]:
         levels[0] = 1
 
-    if total_pm10 >= THRESHOLDS["PM10"][2]:
+    if avg_pm10 >= THRESHOLDS["PM10"][2]:
         levels[1] = 3
-    elif total_pm10 >= THRESHOLDS["PM10"][1]:
+    elif avg_pm10 >= THRESHOLDS["PM10"][1]:
         levels[1] = 2
-    elif total_pm10 >= THRESHOLDS["PM10"][0]:
+    elif avg_pm10 >= THRESHOLDS["PM10"][0]:
         levels[1] = 1
 
-    if total_pm1 >= THRESHOLDS["PM1"][2]:
+    if avg_pm1 >= THRESHOLDS["PM1"][2]:
         levels[2] = 3
-    elif total_pm1 >= THRESHOLDS["PM1"][1]:
+    elif avg_pm1 >= THRESHOLDS["PM1"][1]:
         levels[2] = 2
-    elif total_pm1 >= THRESHOLDS["PM1"][0]:
+    elif avg_pm1 >= THRESHOLDS["PM1"][0]:
         levels[2] = 1
 
     return max(levels)
 
-def send_notification(alert_level, total_pm25, total_pm10, total_pm1):
+def send_notification(alert_level, avg_pm25, avg_pm10, avg_pm1):
     if alert_level == 0:
         message = (
             "Powietrze wróciło do normy. :white_check_mark:\n"
@@ -86,9 +92,9 @@ def send_notification(alert_level, total_pm25, total_pm10, total_pm1):
         emoji = EMOJIS[alert_level]
         message = (
             f"{emoji} Uwaga! Wysoki poziom zanieczyszczeń:\n"
-            f"PM2.5: {total_pm25} µg/m3\n"
-            f"PM10: {total_pm10} µg/m3\n"
-            f"PM1: {total_pm1} µg/m3\n"
+            f"PM2.5: {avg_pm25:.2f} µg/m3\n"
+            f"PM10: {avg_pm10:.2f} µg/m3\n"
+            f"PM1: {avg_pm1:.2f} µg/m3\n"
             f"Poziom zagrożenia: {alert_level}\n"
             f"Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
             "powered by <https://airalert.dlsk.tech/|AirAlert>"
