@@ -16,4 +16,4 @@ Konfiguracja została opisana w [dokumentacji](https://airalert.dlsk.tech/). -->
 Masz pytania lub sugestie? Skontaktuj się ze mną poprzez email: [daniel.szewczuk@infotech.edu.pl](mailto:daniel.szewczuk@infotech.edu.pl).
 
 ## Licencja
-Kod projektu jest udostępniony na licencji [GPL-3.0](LICENSE)
+[Kod projektu](https://github.com/dlsktech/airalert) jest udostępniony na licencji [GPL-3.0](LICENSE)
