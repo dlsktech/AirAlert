@@ -13,7 +13,7 @@ Oddychaj spokojnie.
 Konfiguracja została opisana w [dokumentacji](https://airalert.dlsk.tech/). -->
 
 ## Kontakt
-Masz pytania lub sugestie? Skontaktuj się ze mną poprzez email: [daniel.szewczuk@infotech.edu.pl](mailto:daniel.szewczuk@infotech.edu.pl).
+Masz pytania lub sugestie? Skontaktuj się ze mną poprzez email: [daniel.szewczuk@infotech.edu.pl](mailto:daniel.szewczuk@infotech.edu.pl), lub na [Slacku](https://infotechedu.slack.com/team/U05P2U11JBV)
 
 ## Licencja
 [Kod projektu](https://github.com/dlsktech/airalert) jest udostępniony na licencji [GPL-3.0](LICENSE)
