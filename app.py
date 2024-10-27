@@ -9,8 +9,8 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 DATA_URL = os.getenv("DATA_URL")
 
 THRESHOLDS = {
-    "PM2.5": [30, 100, 150],  # µg/m3
-    "PM10": [50, 100, 150],
+    "PM2.5": [30, 80, 150],  # µg/m3
+    "PM10": [50, 90, 150],
     "PM1": [30, 60, 90]
 }
 
