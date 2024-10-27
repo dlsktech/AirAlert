@@ -86,6 +86,16 @@ def send_notification(alert_level, avg_pm25, avg_pm10, avg_pm1):
             "Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
             "powered by <https://airalert.dlsk.tech/|AirAlert>"
         )
+    elif alert_level < current_alert_level:
+        emoji = EMOJIS[alert_level]
+        message = (
+            f"{emoji} Poziom zagrożenia spadł: {alert_level}\n"
+            f"PM2.5: {avg_pm25:.2f} µg/m3\n"
+            f"PM10: {avg_pm10:.2f} µg/m3\n"
+            f"PM1: {avg_pm1:.2f} µg/m3\n"
+            "Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
+            "powered by <https://airalert.dlsk.tech/|AirAlert>"
+        )
     else:
         emoji = EMOJIS[alert_level]
         alert_text = "podwyższony" if alert_level == 1 else "wysoki"
@@ -95,7 +105,7 @@ def send_notification(alert_level, avg_pm25, avg_pm10, avg_pm1):
             f"PM10: {avg_pm10:.2f} µg/m3\n"
             f"PM1: {avg_pm1:.2f} µg/m3\n"
             f"Poziom zagrożenia: {alert_level}\n"
-            f"Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
+            "Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
             "powered by <https://airalert.dlsk.tech/|AirAlert>"
         )
 
