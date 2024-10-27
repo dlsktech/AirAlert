@@ -33,7 +33,6 @@ def check_air_quality():
     total_pm25 = total_pm10 = total_pm1 = 0
     sensor_count = len(data)
 
-    # Sumowanie danych z wszystkich czujników
     for sensor in data:
         for var in sensor["vars"]:
             if var["var_name"] == "PM2.5":
@@ -43,7 +42,6 @@ def check_air_quality():
             elif var["var_name"] == "PM1":
                 total_pm1 += var["var_value"]
 
-    # Obliczanie średniej z czujników
     avg_pm25 = total_pm25 / sensor_count if sensor_count > 0 else 0
     avg_pm10 = total_pm10 / sensor_count if sensor_count > 0 else 0
     avg_pm1 = total_pm1 / sensor_count if sensor_count > 0 else 0
@@ -90,8 +88,9 @@ def send_notification(alert_level, avg_pm25, avg_pm10, avg_pm1):
         )
     else:
         emoji = EMOJIS[alert_level]
+        alert_text = "podwyższony" if alert_level == 1 else "wysoki"
         message = (
-            f"{emoji} Uwaga! Wysoki poziom zanieczyszczeń:\n"
+            f"{emoji} Uwaga! {alert_text.capitalize()} poziom zanieczyszczeń:\n"
             f"PM2.5: {avg_pm25:.2f} µg/m3\n"
             f"PM10: {avg_pm10:.2f} µg/m3\n"
             f"PM1: {avg_pm1:.2f} µg/m3\n"
