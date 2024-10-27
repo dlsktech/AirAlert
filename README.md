@@ -9,5 +9,11 @@ Oddychaj spokojnie.
 - **Analiza danych w czasie rzeczywistym** – sprawdzanie poziomu zanieczyszczeń i ocena, czy wymagane jest ostrzeżenie.
 - **Powiadomienia na Slacku** – natychmiastowe wysyłanie alertów o złej jakości powietrza za pomocą webhooka.
 
-## Konfiguracja
-Konfiguracja została opisana w [dokumentacji](https://airalert.dlsk.tech/).
+<!-- ## Konfiguracja
+Konfiguracja została opisana w [dokumentacji](https://airalert.dlsk.tech/). -->
+
+## Kontakt
+Masz pytania lub sugestie? Skontaktuj się ze mną poprzez email: [daniel.szewczuk@infotech.edu.pl](mailto:daniel.szewczuk@infotech.edu.pl).
+
+## Licencja
+Kod projektu jest udostępniony na licencji [GPL-3.0](LICENSE)
