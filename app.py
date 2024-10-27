@@ -79,7 +79,7 @@ def send_notification(alert_level, total_pm25, total_pm10, total_pm1):
         message = (
             "Powietrze wróciło do normy. :white_check_mark:\n"
             "Jakość powietrza jest teraz w bezpiecznych granicach.\n"
-            "Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBiałystok.pl>\n"
+            "Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
             "powered by <https://airalert.dlsk.tech/|AirAlert>"
         )
     else:
@@ -90,7 +90,7 @@ def send_notification(alert_level, total_pm25, total_pm10, total_pm1):
             f"PM10: {total_pm10} µg/m3\n"
             f"PM1: {total_pm1} µg/m3\n"
             f"Poziom zagrożenia: {alert_level}\n"
-            f"Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|Czysty Białystok>\n"
+            f"Więcej informacji znajdziesz tutaj: <https://czystybialystok.pl|CzystyBialystok.pl>\n"
             "powered by <https://airalert.dlsk.tech/|AirAlert>"
         )
 
